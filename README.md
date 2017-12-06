@@ -6,9 +6,10 @@ docker run -it -v /xmisp/docker/bind/conf/:/data -v /root/.ssh/:/root/.ssh/ --na
 
 ### use docker compose
 
+```
 version: '3.3'
 services:
-  bind:
+  lsyncd:
     image: davinbao/lsyncd:latest
     deploy:
       replicas: 1
@@ -17,7 +18,7 @@ services:
         limits:
           memory: 512M
     volumes:
-    - /xmisp/docker/bind/conf/:/data
+    - /xmisp/docker/lsyncd/conf/lsyncd.conf:/etc/lsyncd.conf
+    - /xmisp/docker/bind/conf:/data
     - /root/.ssh:/root/.ssh:ro
-    networks:
-      - backend
+```
